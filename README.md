@@ -1,0 +1,8 @@
+- [x] extract the audioSSS
+- [x] play the audio
+- [ ] given an image, create the lines animation
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
