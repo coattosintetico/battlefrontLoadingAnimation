@@ -2,6 +2,8 @@
 
 Recreate the iconic [battlefront loading animation](https://www.youtube.com/watch?v=9s-2olavSPc) in p5.js with a set of images of your choosing.
 
+![demo](example.mp4)
+
 ## Setup
 
 I recommend using [volta](https://volta.sh/) for managing the node and npm versions.
