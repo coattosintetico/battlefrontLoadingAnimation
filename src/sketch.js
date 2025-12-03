@@ -1,5 +1,6 @@
 import p5 from "p5";
 import Animation from "./Animation";
+import { config } from "./config";
 import { CanvasRecorder } from "./recorder";
 
 /**
@@ -11,27 +12,28 @@ const sketch = (p) => {
   let soundEffects;
   let animations = [];
   let currentAnimationIndex = 0;
-  let recorder; // Canvas recorder instance
+  let recorder;
 
   p.setup = async () => {
-    p.createCanvas(1024, 768);
+    p.createCanvas(config.WIDTH, config.HEIGHT);
+    p.frameRate(config.FPS);
 
+    // ------------ MAKE YOUR CHANGES HERE -------------------------------------
     images = [
-      await p.loadImage("assets/santiago/01.png"),
-      await p.loadImage("assets/santiago/02.png"),
-      await p.loadImage("assets/santiago/03.png"),
-      await p.loadImage("assets/santiago/04.png"),
-      await p.loadImage("assets/santiago/05.png"),
-      await p.loadImage("assets/santiago/06.png"),
+      await p.loadImage("assets/example/01.png"),
+      await p.loadImage("assets/example/02.png"),
+      await p.loadImage("assets/example/03.png"),
+      await p.loadImage("assets/example/04.png"),
+      await p.loadImage("assets/example/05.png"),
     ];
 
     positions = [
-      new p.createVector(353, 147),
-      new p.createVector(279, 154),
-      new p.createVector(602, 373),
-      new p.createVector(575, 344),
-      new p.createVector(601, 438),
+      new p.createVector(352, 148),
+      new p.createVector(292, 160),
+      new p.createVector(597, 373),
+      new p.createVector(666, 275),
     ];
+    // -------------------------------------------------------------------------
 
     soundEffects = [
       new Audio("assets/soundEffect01.mp3"),
@@ -53,7 +55,9 @@ const sketch = (p) => {
       // Get the canvas element - p5 creates it automatically
       const canvas = document.querySelector("canvas");
       // Pass soundEffects array to capture audio along with video
-      recorder.start(canvas, soundEffects, 60); // Record at 60 FPS with audio
+      if (config.RECORD) {
+        recorder.start(canvas, soundEffects, config.FPS); // Record at 60 FPS with audio
+      }
     }
 
     // Progress through animations
@@ -67,10 +71,14 @@ const sketch = (p) => {
     } else {
       // All animations finished - wait a couple seconds before stopping recording and the sketch
       p.noLoop();
+      // prettier-ignore
       if (recorder) {
+        // Wait for 2 seconds (2000 ms) before stopping the recorder, in order to have the last image at the end for some time in the video
         setTimeout(() => {
-          recorder.stop();
-        }, 2000); // Wait for 2 seconds (2000 ms) before stopping the recorder
+          if (config.RECORD) {
+            recorder.stop();
+          }
+        }, 2000);
       }
     }
   };

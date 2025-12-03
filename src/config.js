@@ -4,6 +4,7 @@ export const config = {
   DEST_WIDTH: 80,
   DEST_HEIGHT: 60,
   FPS: 30,
+  RECORD: true,
   LINE_COLOR: "#04C0FF",
   LINE_WEIGHT: 3,
   MARGIN: 1,
