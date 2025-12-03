@@ -2,7 +2,7 @@
 
 Recreate the iconic [battlefront loading animation](https://www.youtube.com/watch?v=9s-2olavSPc) in p5.js with a set of images of your choosing.
 
-![demo](example.mp4)
+https://github.com/user-attachments/assets/e51f559b-b699-439c-b14c-8dbf854986d3
 
 ## Setup
 
