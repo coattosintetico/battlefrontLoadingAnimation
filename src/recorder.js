@@ -39,8 +39,9 @@ export class CanvasRecorder {
     if (audioElements && audioElements.length > 0) {
       // AudioContext is the Web Audio API's main interface
       // It creates and manages audio processing nodes
-      this.audioContext = new (window.AudioContext ||
-        window.webkitAudioContext)();
+      this.audioContext = new (
+        window.AudioContext || window.webkitAudioContext
+      )();
 
       // MediaStreamDestination creates a destination that outputs to a MediaStream
       // This allows us to route Web Audio API output into MediaRecorder

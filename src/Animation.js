@@ -1,4 +1,5 @@
 import p5 from "p5";
+import { config } from "./config";
 
 export default class Animation {
   constructor(p, baseImage, destImage, destCoord, soundEffects) {
@@ -6,12 +7,12 @@ export default class Animation {
     this.p = p;
     /** @type {p5.Image} image that is drawn at the beginning */
     this.baseImage = baseImage;
-    /** @type {p5.Image} image that represents the end result */
+    /** @type {p5.Image} image that represents the end result (i.e. to what we will be zooming in to) */
     this.destImage = destImage;
-    /** @type {p5.Vector} x y coordinates of the top left corner of the destination */
+    /** @type {p5.Vector} x y coordinates of the top left corner of the destination (i.e. to what we will be zooming in to) */
     this.destCoord = destCoord;
 
-    /** @type {Array<Audio>} sound effect to be played */
+    /** @type {Array<Audio>} sound effects to be played */
     this.soundEffects = soundEffects;
     /** @type {Array<boolean>} whether sound effects have played already to avoid playing them twice */
     this.soundsHavePlayed = [false, false, false];
@@ -26,15 +27,16 @@ export default class Animation {
       this.startTime = this.p.millis();
     }
 
-    const lineColor = this.p.color(4, 192, 255);
-    const lineWeight = 3;
-    const margin = 1;
-    const destWidth = 80;
-    const destHeight = 60;
+    const lineColor = this.p.color(config.LINE_COLOR);
+    const lineWeight = config.LINE_WEIGHT;
+    const margin = config.MARGIN;
+    const destWidth = config.DEST_WIDTH;
+    const destHeight = config.DEST_HEIGHT;
 
     this.p.stroke(lineColor);
     this.p.strokeWeight(lineWeight);
 
+    // Time that has passed since this specific animation started
     const t = this.p.millis() - this.startTime;
 
     if (t < 1000) {
